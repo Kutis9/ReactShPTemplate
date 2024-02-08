@@ -1,0 +1,10 @@
+.app-container {
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.content-container {
+    display: flex;
+    justify-content: space-between;
+}

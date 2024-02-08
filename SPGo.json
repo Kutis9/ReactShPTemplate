@@ -1,0 +1,14 @@
+{
+    "sourceDirectory": "0src",
+    "sharePointSiteUrl": "https://web.kutis.mil.sk",
+    "workspaceRoot": "d:\\UsersData\\kutkal\\Desktop\\Projects\\React\\ReactWebpackApp",
+    "publishWorkspaceOptions": {
+        "destinationFolder": "/",
+        "globPattern": "d:\\UsersData\\kutkal\\Desktop\\Projects\\React\\ReactWebpackApp\\0src\\**\\*.*",
+        "localRoot": "d:\\UsersData\\kutkal\\Desktop\\Projects\\React\\ReactWebpackApp\\0src"
+    },
+    "remoteFolders": ["/SiteAssets/ReactTestApp/**/*"],
+    "publishingScope": "SaveOnly",
+    "checkInMessage": "Change by kutkal",
+    "authenticationType": "NTLM"
+}
