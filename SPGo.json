@@ -1,11 +1,11 @@
 {
     "sourceDirectory": "0src",
-    "sharePointSiteUrl": "https://web.kutis.mil.sk",
-    "workspaceRoot": "d:\\UsersData\\kutkal\\Desktop\\Projects\\React\\ReactWebpackApp",
+    "sharePointSiteUrl": "http://kutis",
+    "workspaceRoot": "d:\\Projects\\React_Sharepoint16_TemplateApp\\ReactShPTemplate",
     "publishWorkspaceOptions": {
         "destinationFolder": "/",
-        "globPattern": "d:\\UsersData\\kutkal\\Desktop\\Projects\\React\\ReactWebpackApp\\0src\\**\\*.*",
-        "localRoot": "d:\\UsersData\\kutkal\\Desktop\\Projects\\React\\ReactWebpackApp\\0src"
+        "globPattern": "d:\\Projects\\React_Sharepoint16_TemplateApp\\ReactShPTemplate\\0src\\**\\*.*",
+        "localRoot": "d:\\Projects\\React_Sharepoint16_TemplateApp\\ReactShPTemplate\\0src"
     },
     "remoteFolders": ["/SiteAssets/ReactTestApp/**/*"],
     "publishingScope": "SaveOnly",

@@ -1,19 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import { DefaultButton, DetailsList, IColumn } from '@fluentui/react';
+import { DefaultButton, DetailsList, IColumn, SelectionMode } from '@fluentui/react';
 import AddCharacterToSharePoint from './AddCharacterToSharePoint';
 
-interface Character {
+type Character = {
   id: string;
   name: string;
-  actor: string;
-  gender: string;
   house: string;
+  actor: string;
+  dateOfBirth: string;
+  gender: string;
   wand: {
-    wood: string;
     core: string;
-    length: number;
-    };
-}
+    wood: string;
+  };
+};
 
 const CharactersDetailsList: React.FC = () => {
   const [characters, setCharacters] = useState<Character[]>([]);
@@ -41,18 +41,14 @@ const CharactersDetailsList: React.FC = () => {
     { key: 'column5', name: 'Prútik materiál', fieldName: 'wood', minWidth: 100, maxWidth: 150, isResizable: true },
     { key: 'column6', name: 'Prútik jadro', fieldName: 'core', minWidth: 100, maxWidth: 150, isResizable: true },
     {
-        key: 'action',
+        key: 'column8',
         name: 'Akcia',
         fieldName: 'action',
-        minWidth: 70,
-        maxWidth: 90,
+        minWidth: 150,
+        maxWidth: 200,
         isResizable: true,
         onRender: (item: Character) => (
-          <DefaultButton 
-            text="Pridať" 
-            onClick={() => AddCharacterToSharePoint(item)} 
-            allowDisabledFocus 
-          />
+        <AddCharacterToSharePoint character={item} />
         ),
       },
   ];
@@ -63,9 +59,7 @@ const CharactersDetailsList: React.FC = () => {
       columns={columns}
       setKey="set"
       layoutMode={0} // Justify columns
-      selectionPreservedOnEmptyClick={true}
-      ariaLabelForSelectionColumn="Toggle selection"
-      ariaLabelForSelectAllCheckbox="Toggle selection for all items"
+      selectionMode={SelectionMode.none} // Vypnutie výberu
     />
   );
 };

@@ -5,7 +5,7 @@ interface Character {
     name: string;
     species: string;
     gender: string;
-    house: string;
+    house?: string;
     dateOfBirth: string;
     yearOfBirth: number;
     wizard: boolean;
@@ -13,9 +13,9 @@ interface Character {
     eyeColour: string;
     hairColour: string;
     wand: {
-        wood: string;
-        core: string;
-        length: number;
+        wood?: string;
+        core?: string;
+        length?: number;
     };
     patronus: string;
     hogwartsStudent: boolean;

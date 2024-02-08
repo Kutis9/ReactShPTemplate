@@ -2,6 +2,7 @@ const path = require('path');
 
 module.exports = {
   mode: 'production',
+  devtool: 'source-map',
   externals: {
     'react': 'React',
     'react-dom': 'ReactDOM',

@@ -1,47 +1,66 @@
 import React from 'react';
-import { DefaultButton } from '@fluentui/react/lib/Button';
+import { PrimaryButton } from '@fluentui/react/lib/Button';
 
-interface Character {
+type Character = {
   id: string;
   name: string;
-  house: string;
+  house?: string;
   actor: string;
   dateOfBirth: string;
   gender: string;
   wand: {
-    core: string;
-    wood: string;
+    core?: string;
+    wood?: string;
   };
-}
+};
 
-interface AddCharacterProps {
+type DateStr = string;
+
+type AddCharacterProps = {
   character: Character;
-}
+};
 
 const AddCharacterToSharePoint: React.FC<AddCharacterProps> = ({ character }) => {
+  // z API ziskavam datum v formate DD-MM-YYYY preto tato uprava
+  const formatDateToDDMMYYYY = (dateStr: DateStr | null) => {
+    if (!dateStr) {
+      return "";
+    }
+    const [day, month, year] = dateStr.split("-");
+    return `${day}.${month}.${year}`;
+  };
+  
   const addItemToSharePoint = async () => {
     // Konvertujte údaje o postave na formát potrebný pre SharePoint
     const spListItem = {
       // Môžete potrebovať prispôsobiť kľúče podľa názvov stĺpcov v SharePoint zozname
+      
       Title: character.name, // Predpokladajme, že "Title" je použitý pre "Cele_Meno"
       Fakulta: character.house,
       Herec: character.actor,
-      Datum_Narodenia: character.dateOfBirth,
+      Datum_Narodenia: formatDateToDDMMYYYY(character.dateOfBirth),
       Pohlavie: character.gender,
       Prutik_Jadro: character.wand.core,
       Prutik_Material: character.wand.wood,
     };
 
     try {
-      const response = await fetch(`https://[váš-doména]/_api/web/lists/getbytitle('Harry_Potter_Osoby')/items`, {
+      // googlenie kvoli typescriptu 
+      // bolo treba pretypovat ocakavanu value dostanu z __REQUESTDIGEST
+      // ta by mala byt typu HTMLInputElement
+      const webAbsoluteUrl = _spPageContextInfo.webAbsoluteUrl;
+      const listTitle = 'Harry_Potter_Osoby';
+      const requestDigest = document.getElementById("__REQUESTDIGEST") as HTMLInputElement;
+      const response = await fetch(`${webAbsoluteUrl}/_api/web/lists/getbytitle('${listTitle}')/items`, {
         method: 'POST',
-        body: JSON.stringify({ '__metadata': { 'type': 'SP.Data.Harry_Potter_OsobyListItem' }, ...spListItem }),
+        body: JSON.stringify({ '__metadata': { 'type': 'SP.Data.Harry_x005f_Potter_x005f_OsobyListItem' }, ...spListItem }),
         headers: {
           'Accept': 'application/json;odata=verbose',
           'Content-Type': 'application/json;odata=verbose',
-          'X-RequestDigest': document.getElementById("__REQUESTDIGEST").value,
+          'X-RequestDigest': requestDigest.value,
           // Pridajte token pre autentifikáciu, ak je potrebný
         },
+        credentials: 'same-origin'  // Dôležité pre autentizáciu v SharePoint prostredí
       });
 
       if (!response.ok) {
@@ -56,7 +75,7 @@ const AddCharacterToSharePoint: React.FC<AddCharacterProps> = ({ character }) =>
   };
 
   return (
-    <DefaultButton text="Pridať do SharePointu" onClick={addItemToSharePoint} />
+    <PrimaryButton text="Pridať do SharePointu" onClick={addItemToSharePoint}/>
   );
 };
 

@@ -19,8 +19,9 @@ const App: React.FC = () => {
     <WelcomeMessage />
     <LoggedUser />
     </div>
-<div>
+<div className="buttons-navbar">
   {/* <CharactersList /> */}
+  
   <PrimaryButton onClick={toggleView} text={isCardView ? "Zobraz zoznam" : "Zobraz Karty"} />
   {isCardView ? <CharactersList /> : <CharactersDetailsList />}
 </div>

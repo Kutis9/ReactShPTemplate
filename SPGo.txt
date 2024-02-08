@@ -1,0 +1,14 @@
+{
+    "sourceDirectory": "0src",
+    "sharePointSiteUrl": "http://kutis/",
+    "workspaceRoot": "d:\\UsersData\\kutkal\\Desktop\\Projects\\React\\ReactShPTemplate",
+    "publishWorkspaceOptions": {
+        "destinationFolder": "/",
+        "globPattern": "d:\\UsersData\\kutkal\\Desktop\\Projects\\React\\ReactShPTemplate\\0src\\**\\*.*",
+        "localRoot": "d:\\UsersData\\kutkal\\Desktop\\Projects\\React\\ReactShPTemplate\\0src"
+    },
+    "remoteFolders": ["/SiteAssets/ReactTestApp/**/*"],
+    "publishingScope": "SaveOnly",
+    "checkInMessage": "Change by kutkal",
+    "authenticationType": "NTLM"
+}
