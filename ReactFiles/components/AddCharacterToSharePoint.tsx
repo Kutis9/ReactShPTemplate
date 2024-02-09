@@ -1,40 +1,22 @@
 import React from 'react';
 import { PrimaryButton } from '@fluentui/react/lib/Button';
+import { Character } from './Types/Types';
+import { formatDateToDDMMYYYY } from './Service/DateFormatting';
 
-type Character = {
-  id: string;
-  name: string;
-  house?: string;
-  actor: string;
-  dateOfBirth: string;
-  gender: string;
-  wand: {
-    core?: string;
-    wood?: string;
-  };
-};
 
-type DateStr = string;
 
 type AddCharacterProps = {
   character: Character;
 };
 
 const AddCharacterToSharePoint: React.FC<AddCharacterProps> = ({ character }) => {
-  // z API ziskavam datum v formate DD-MM-YYYY preto tato uprava
-  const formatDateToDDMMYYYY = (dateStr: DateStr | null) => {
-    if (!dateStr) {
-      return "";
-    }
-    const [day, month, year] = dateStr.split("-");
-    return `${day}.${month}.${year}`;
-  };
-  
+
+
   const addItemToSharePoint = async () => {
     // Konvertujte údaje o postave na formát potrebný pre SharePoint
     const spListItem = {
       // Môžete potrebovať prispôsobiť kľúče podľa názvov stĺpcov v SharePoint zozname
-      
+
       Title: character.name, // Predpokladajme, že "Title" je použitý pre "Cele_Meno"
       Fakulta: character.house,
       Herec: character.actor,
@@ -42,6 +24,7 @@ const AddCharacterToSharePoint: React.FC<AddCharacterProps> = ({ character }) =>
       Pohlavie: character.gender,
       Prutik_Jadro: character.wand.core,
       Prutik_Material: character.wand.wood,
+      Image: character.image,
     };
 
     try {
@@ -63,6 +46,7 @@ const AddCharacterToSharePoint: React.FC<AddCharacterProps> = ({ character }) =>
         credentials: 'same-origin'  // Dôležité pre autentizáciu v SharePoint prostredí
       });
 
+
       if (!response.ok) {
         throw new Error('Chyba pri pridávaní položky do SharePointu');
       }
@@ -75,7 +59,7 @@ const AddCharacterToSharePoint: React.FC<AddCharacterProps> = ({ character }) =>
   };
 
   return (
-    <PrimaryButton text="Pridať do SharePointu" onClick={addItemToSharePoint}/>
+    <PrimaryButton text="Pridať do SharePointu" onClick={addItemToSharePoint} />
   );
 };
 

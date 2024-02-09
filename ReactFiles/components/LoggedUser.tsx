@@ -22,7 +22,6 @@ const LoggedUser: React.FC = () => {
         }
 
         const data = await response.json();
-        console.log(data.d);
         
         setUserName(data.d.Title); // Nastavenie mena používateľa načítaného z API
       } catch (error) {

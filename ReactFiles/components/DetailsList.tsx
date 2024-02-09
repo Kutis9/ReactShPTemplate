@@ -1,19 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { DefaultButton, DetailsList, IColumn, SelectionMode } from '@fluentui/react';
+import { DetailsList, IColumn, SelectionMode } from '@fluentui/react';
 import AddCharacterToSharePoint from './AddCharacterToSharePoint';
+import { Character } from './Types/Types'; 
 
-type Character = {
-  id: string;
-  name: string;
-  house: string;
-  actor: string;
-  dateOfBirth: string;
-  gender: string;
-  wand: {
-    core: string;
-    wood: string;
-  };
-};
 
 const CharactersDetailsList: React.FC = () => {
   const [characters, setCharacters] = useState<Character[]>([]);
@@ -40,6 +29,7 @@ const CharactersDetailsList: React.FC = () => {
     { key: 'column4', name: 'Fakulta', fieldName: 'house', minWidth: 100, maxWidth: 150, isResizable: true },
     { key: 'column5', name: 'Prútik materiál', fieldName: 'wood', minWidth: 100, maxWidth: 150, isResizable: true },
     { key: 'column6', name: 'Prútik jadro', fieldName: 'core', minWidth: 100, maxWidth: 150, isResizable: true },
+    { key: 'column7', name: 'Image', fieldName: 'image', minWidth: 100, maxWidth: 300, isResizable: true },
     {
         key: 'column8',
         name: 'Akcia',

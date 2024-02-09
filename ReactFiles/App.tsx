@@ -3,7 +3,8 @@ import WelcomeMessage from "./components/WelcomeMessage";
 import LoggedUser from "./components/LoggedUser";
 import CharactersList from "./components/CharactersList";
 import CharactersDetailsList from "./components/DetailsList";
-import { DefaultButton, PrimaryButton } from "@fluentui/react";
+import { PrimaryButton } from "@fluentui/react";
+import LoadSaveToListButton from "./components/LoadSaveToListButton";
 
 const App: React.FC = () => {
 
@@ -14,18 +15,20 @@ const App: React.FC = () => {
   }
 
   return (
-  <div className="app-container">
-    <div className="hp-header">
-    <WelcomeMessage />
-    <LoggedUser />
+    <div className="app-container">
+      <div className="hp-header">
+        <WelcomeMessage />
+        <LoggedUser />
+      </div>
+      <div >
+        {/* <CharactersList /> */}
+        <div className="buttons-navbar">
+          <PrimaryButton onClick={toggleView} text={isCardView ? "Zobraz zoznam" : "Zobraz Karty"} />
+          <LoadSaveToListButton />
+        </div>
+        {isCardView ? <CharactersList /> : <CharactersDetailsList />}
+      </div>
     </div>
-<div className="buttons-navbar">
-  {/* <CharactersList /> */}
-  
-  <PrimaryButton onClick={toggleView} text={isCardView ? "Zobraz zoznam" : "Zobraz Karty"} />
-  {isCardView ? <CharactersList /> : <CharactersDetailsList />}
-</div>
-  </div>
   );
 };
 
